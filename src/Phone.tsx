@@ -65,20 +65,20 @@ const Phone = ({ token }: { token: string }) => {
         });
         device.register();
         setDevice(device);
-        device.addListener("connect", (device) => {
+        (device as any).addListener("connect", (device: any) => {
           console.log("Connect event listener added .....");
           return device;
         });
-        device.on("registered", () => {
+        (device as any).on("registered", () => {
           console.log("Agent registered");
           setUserState(USER_STATE.READY);
         });
-        device.on("connect", (connection) => {
+        (device as any).on("connect", (connection) => {
           console.log("Call connect");
           setConnection(connection);
           setUserState(USER_STATE.ON_CALL);
         });
-        device.on("disconnect", () => {
+        (device as any).on("disconnect", () => {
           console.log("Disconnect event");
           setUserState(USER_STATE.READY);
           setConnection(null);
@@ -100,7 +100,7 @@ const Phone = ({ token }: { token: string }) => {
       From: "0ec254a0-fa4f-4833-b3eb-8d91f9868301",
       To: phoneNumber,
     };
-    callDevice?.emit("connect");
+    (Device as any)?.emit("connect");
     callDevice
       ?.connect({
         params: params,
@@ -109,17 +109,17 @@ const Phone = ({ token }: { token: string }) => {
         },
       })
       .then((call) => {
-        call.on("accept", () => {
+        (call as any).on("accept", () => {
           setConnection(connection);
           setUserState(USER_STATE.ON_CALL);
           console.log("call accepted");
         });
-        call.on("disconnect", () => {
+        (call as any).on("disconnect", () => {
           console.log("The call has been disconnected.");
           setUserState(USER_STATE.READY);
           setConnection(null);
         });
-        call.on("reject", () => {
+        (call as any).on("reject", () => {
           console.log("The call was rejected.");
         });
       });
