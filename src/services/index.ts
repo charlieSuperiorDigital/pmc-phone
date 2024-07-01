@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const Instance = axios.create({
-  baseURL: "http:localhost:4000",
-});
+// const Instance = axios.create({
+//   baseURL: "http:localhost:4000",
+// });
 
 // const getToken = (identity: string) =>
 //   Instance({
