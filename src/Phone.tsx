@@ -97,10 +97,10 @@ const Phone = ({ token }: { token: string }) => {
 
   const handleCall = async () => {
     const params: Record<string, string> = {
-      From: "0ec254a0-fa4f-4833-b3eb-8d91f9868301",
+      From: `${import.meta.env.VITE_USER_ID}`,
       To: phoneNumber,
     };
-    (Device as any)?.emit("connect");
+    callDevice?.emit("connect");
     callDevice
       ?.connect({
         params: params,
@@ -109,17 +109,17 @@ const Phone = ({ token }: { token: string }) => {
         },
       })
       .then((call) => {
-        (call as any).on("accept", () => {
+        call.on("accept", () => {
           setConnection(connection);
           setUserState(USER_STATE.ON_CALL);
           console.log("call accepted");
         });
-        (call as any).on("disconnect", () => {
+        call.on("disconnect", () => {
           console.log("The call has been disconnected.");
           setUserState(USER_STATE.READY);
           setConnection(null);
         });
-        (call as any).on("reject", () => {
+        call.on("reject", () => {
           console.log("The call was rejected.");
         });
       });
