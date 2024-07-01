@@ -100,7 +100,7 @@ const Phone = ({ token }: { token: string }) => {
       From: `${import.meta.env.VITE_USER_ID}`,
       To: phoneNumber,
     };
-    callDevice?.emit("connect");
+    (callDevice as any)?.emit("connect");
     callDevice
       ?.connect({
         params: params,
@@ -109,17 +109,17 @@ const Phone = ({ token }: { token: string }) => {
         },
       })
       .then((call) => {
-        call.on("accept", () => {
+        (call as any).on("accept", () => {
           setConnection(connection);
           setUserState(USER_STATE.ON_CALL);
           console.log("call accepted");
         });
-        call.on("disconnect", () => {
+        (call as any).on("disconnect", () => {
           console.log("The call has been disconnected.");
           setUserState(USER_STATE.READY);
           setConnection(null);
         });
-        call.on("reject", () => {
+        (call as any).on("reject", () => {
           console.log("The call was rejected.");
         });
       });
