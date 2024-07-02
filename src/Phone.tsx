@@ -99,6 +99,7 @@ const Phone = ({ token }: { token: string }) => {
     const params: Record<string, string> = {
       From: `${import.meta.env.VITE_USER_ID}`,
       To: phoneNumber,
+      projectId: `${import.meta.env.VITE_PROJECT_ID}`,
     };
     (callDevice as any)?.emit("connect");
     callDevice
