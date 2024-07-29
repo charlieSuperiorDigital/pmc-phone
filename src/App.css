@@ -45,7 +45,6 @@
   color: #888;
 }
 
-
 .header {
   background-color: cornflowerblue;
   color: azure;
@@ -128,4 +127,36 @@
 }
 .connect-button {
   background-color: green;
+}
+
+/* chat */
+.chat-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.messages {
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-bottom: 5px;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.chat-input button {
+  padding: 5px 10px;
 }

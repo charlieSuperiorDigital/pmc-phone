@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Device } from "@twilio/voice-sdk";
+import Chat from "./Chat";
 
 //Types
 enum USER_STATE {
@@ -173,6 +174,7 @@ const Phone = ({ token }: { token: string }) => {
           <i className="material-icons">call</i>
         )}
       </div>
+      <Chat />
     </div>
   );
 };
