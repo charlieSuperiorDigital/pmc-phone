@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Device } from "@twilio/voice-sdk";
-import Chat from "./Chat";
 
 //Types
 enum USER_STATE {
