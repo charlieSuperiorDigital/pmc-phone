@@ -56,6 +56,9 @@
 .phone-box {
   margin: 0 40%;
   margin-top: 60px;
+  display: flex;
+  width: 100%;
+  gap: 100px;
 }
 .gird {
   display: grid;
@@ -135,10 +138,11 @@
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
+  width: 350px;
 }
 
 .messages {
-  height: 200px;
+  height: 450px;
   overflow-y: auto;
   margin-bottom: 10px;
 }

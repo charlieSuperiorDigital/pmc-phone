@@ -174,7 +174,6 @@ const Phone = ({ token }: { token: string }) => {
           <i className="material-icons">call</i>
         )}
       </div>
-      <Chat />
     </div>
   );
 };
