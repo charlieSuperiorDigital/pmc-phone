@@ -57,7 +57,8 @@
   margin: 0 40%;
   margin-top: 60px;
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 100 wv;
   gap: 100px;
 }
 .gird {
