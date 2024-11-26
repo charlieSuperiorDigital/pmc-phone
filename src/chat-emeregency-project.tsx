@@ -11,20 +11,26 @@ type Message = {
   userId: string;
   fileUrl?: string;
 };
+type Props = {
+  name: string;
+};
 
-const ChatEmergencyProvider = () => {
+const ChatEmergencyProject = ({ name }: Props) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
 
   const handleFormSubmit = async () => {
-    const companyId = import.meta.env.VITE_EMERGENCY_PROVIDER_CHAT_ID;
+    const companyId = import.meta.env.VITE_EMERGENCY_PROJECT_CHAT_ID;
 
     const payload = {
       roomId: companyId,
-      author: `Tester Provider`,
+      author: name,
       messages: message,
       authorImage: `${import.meta.env.VITE_USER_IMAGE}`,
-      userId: `${import.meta.env.VITE_EMERGENCY_USER_PROVIDER_ID}`,
+      userId:
+        name === "TESTER CLIENT"
+          ? `${import.meta.env.VITE_EMERGENCY_USER_ID}`
+          : `${import.meta.env.VITE_EMERGENCY_USER_PROVIDER_ID}`,
       fileUrl: undefined,
     };
     socket.emit("sendEmergencyMessage", payload);
@@ -33,7 +39,7 @@ const ChatEmergencyProvider = () => {
 
   useEffect(() => {
     socket.emit("joinEmergencyRoom", {
-      roomId: `${import.meta.env.VITE_EMERGENCY_PROVIDER_CHAT_ID}`,
+      roomId: `${import.meta.env.VITE_EMERGENCY_PROJECT_CHAT_ID}`,
     });
     socket.on("receiveEmergencyMessage", (payload: Message) => {
       setMessages((prevMessages) => [...prevMessages, payload]);
@@ -43,7 +49,7 @@ const ChatEmergencyProvider = () => {
       socket.off("receiveEmergencyMessage");
       socket.off("joinEmergencyRoom");
     };
-  }, [import.meta.env.VITE_EMERGENCY_PROVIDER_CHAT_ID]);
+  }, [import.meta.env.VITE_EMERGENCY_PROJECT_CHAT_ID]);
   return (
     <div className="chat-container">
       <div className="messages">
@@ -82,4 +88,4 @@ const ChatEmergencyProvider = () => {
   );
 };
 
-export default ChatEmergencyProvider;
+export default ChatEmergencyProject;
